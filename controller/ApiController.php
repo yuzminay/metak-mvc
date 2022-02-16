@@ -27,4 +27,10 @@ class ApiController extends Controller
       echo "There is Error in insert";
     }
   }
+
+  public function defaultAction()
+  {
+    $template = new Template('default'); #choosing template
+    $template->view('api/index', []);
+  }
 }

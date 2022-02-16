@@ -52,7 +52,9 @@ class Post
 
 
     $newfilename = ($newfilename ? ('http://' . $_SERVER['SERVER_NAME'] . '/uploads/' . $newfilename) : $this->image);
-
+    if ($this->title == NULL) {
+      return false;
+    }
     $sql  = "INSERT INTO posts (id, title, content, time, image) VALUES (NULL, '$this->title', '$this->content', '$this->date', '$newfilename')";
 
     $stmt = $this->dbc->prepare($sql);
