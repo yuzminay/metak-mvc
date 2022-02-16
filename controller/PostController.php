@@ -37,4 +37,30 @@ class PostController extends Controller
       'total_pages' => $total_pages,
     ]);
   }
+
+  public function createAction()
+  {
+    # Getting Database Connection
+    $dbh = DatabaseConnection::getInstance();
+    $dbc = $dbh->getConnection();
+
+    if (isset($_POST["submit"])) {
+
+      $post = new Post($dbc);
+
+      $post->title    = $_POST['title'];
+      $post->content  = $_POST['content'];
+      $post->date     = $_POST['date'];
+      $post->image    = $_POST['image'];
+
+      $post->save();
+
+      $template = new Template('default'); #choosing template
+      $template->view('post/index', []);
+    }
+
+
+    $template = new Template('default'); #choosing template
+    $template->view('post/create', []);
+  }
 }

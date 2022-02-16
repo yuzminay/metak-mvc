@@ -1,0 +1,28 @@
+<div class="form">
+  <h1 class="text-center">Create Post</h1>
+  <form enctype="multipart/form-data" method="post" action="/index.php/?section=post&action=create">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" name="title" placeholder="Enter Title" required>
+    </div>
+    <div class="form-group">
+      <label>Content</label>
+      <textarea class="form-control" name="content" placeholder="Enter Content" required></textarea>
+    </div>
+    <div class="form-group">
+      <label>Time</label>
+      <input type="date" class="form-control" name="date" placeholder="Enter Time" required>
+    </div>
+    <div class="image">
+      <p>
+        Image
+      </p>
+      <div class="custom-file">
+        <label>Image</label>
+        <input type="file" class="custom-file-input" name="image" id="customFile" required>
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+    </div>
+    <button name="submit" type="submit" class="mt-4 btn btn-primary">Submit</button>
+  </form>
+</div>
