@@ -41,7 +41,7 @@ class Post
       $temp = explode(".", $_FILES["image"]["name"]);
       $newfilename = round(microtime(true)) . '.' . end($temp);
 
-      if (move_uploaded_file($_FILES["image"]["tmp_name"], $newfilename)) {
+      if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $newfilename)) {
         $sql  = "INSERT INTO posts (id, title, content, time, image) VALUES (NULL, '$this->title', '$this->content', '$this->date', '$newfilename')";
 
         $stmt = $this->dbc->prepare($sql);

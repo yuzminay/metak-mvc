@@ -5,9 +5,7 @@
   <?php foreach($posts as $post):?>
 
   <div class="card m-2" style="width: 18rem;">
-    <img class="card-img-top"
-      src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-      alt="Card image cap">
+    <img class="card-img-top" src="http://<?= $_SERVER['SERVER_NAME'] ?>/uploads/<?= $post['image'] ?>" alt="Card image cap">
     <div class="card-body">
       <h4>
         <?= @$post['title'] ?>
