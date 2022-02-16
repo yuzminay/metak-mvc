@@ -1,4 +1,5 @@
 <?php
+# Making shure that this connection will be only one time in entire page
 
 final class DatabaseConnection #final for not being extended
 {

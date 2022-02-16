@@ -7,6 +7,9 @@ require_once ROOT_PATH . 'src/Controller.php';
 
 require_once ROOT_PATH . 'src/Template.php';
 
+require_once ROOT_PATH . 'model/Post.php';
+
+require_once ROOT_PATH . 'src/DatabaseConnection.php';
 
 # DATABASE CONNECTION
 # Taking db info dbn, host, username, pass
