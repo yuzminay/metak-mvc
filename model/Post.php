@@ -17,6 +17,28 @@ class Post
 
 
   # Queries
+  public function findAllPerPage($start_from, $limit)
+  {
+    $sql  = "SELECT * FROM posts ORDER BY id ASC LIMIT $start_from, $limit";
+    $stmt = $this->dbc->prepare($sql);
+    $stmt->execute();
+
+    $posts = $stmt->fetchAll();
+
+    return $posts;
+  }
+
+  public function countTable()
+  {
+    $sql  = "SELECT COUNT(id) FROM posts";
+    $stmt = $this->dbc->prepare($sql);
+    $stmt->execute();
+
+    $posts = $stmt->fetchAll();
+
+    return $posts;
+  }
+
   public function findById($id)
   {
 
