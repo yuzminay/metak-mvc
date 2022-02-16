@@ -5,7 +5,9 @@
   <?php foreach($posts as $post):?>
 
   <div class="card m-2" style="width: 18rem;">
-    <img class="card-img-top" style="max-height: 240px;" src="http://<?= $_SERVER['SERVER_NAME'] ?>/uploads/<?= $post['image'] ?>" alt="Card image cap">
+    <img class="card-img-top" style="max-height: 240px;"
+      src="<?= $post['image'] ?: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png' ?>"
+      alt="Card image cap">
     <div class="card-body">
       <h4>
         <?= @$post['title'] ?>

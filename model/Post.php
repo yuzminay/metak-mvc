@@ -19,37 +19,47 @@ class Post
   # Queries
   public function save()
   {
-    $target_dir = ROOT_PATH . "public/uploads/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    if ($_FILES["image"]) {
+      $target_dir = ROOT_PATH . "public/uploads/";
+      $target_file = $target_dir . basename($_FILES["image"]["name"]);
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Allow certain file formats
-    if (
-      $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-      && $imageFileType != "gif"
-    ) {
-      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-      $uploadOk = 0;
+      // Allow certain file formats
+      if (
+        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif"
+      ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+      }
+
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+      } else {
+        $temp = explode(".", $_FILES["image"]["name"]);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        // "http://<?= $_SERVER['SERVER_NAME'] /uploads/<?= $post['image'] 
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $newfilename)) {
+          echo "The Image " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+        } else {
+          echo "Sorry, there was an error uploading your file.";
+        }
+      }
     }
 
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-      echo "Sorry, your file was not uploaded.";
-      // if everything is ok, try to upload file
+
+    $newfilename = ($newfilename ? ('http://' . $_SERVER['SERVER_NAME'] . '/uploads/' . $newfilename) : $this->image);
+
+    $sql  = "INSERT INTO posts (id, title, content, time, image) VALUES (NULL, '$this->title', '$this->content', '$this->date', '$newfilename')";
+
+    $stmt = $this->dbc->prepare($sql);
+    if ($stmt->execute()) {
+      return true;
     } else {
-      $temp = explode(".", $_FILES["image"]["name"]);
-      $newfilename = round(microtime(true)) . '.' . end($temp);
-
-      if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $newfilename)) {
-        $sql  = "INSERT INTO posts (id, title, content, time, image) VALUES (NULL, '$this->title', '$this->content', '$this->date', '$newfilename')";
-
-        $stmt = $this->dbc->prepare($sql);
-        $stmt->execute();
-        echo "The Post " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
-      } else {
-        echo "Sorry, there was an error uploading your file.";
-      }
+      return false;
     }
   }
 

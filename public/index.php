@@ -28,12 +28,17 @@ if ($section == 'post') {
 
   include ROOT_PATH . 'controller/PostController.php';
 
-  $homeController = new PostController();
-  $homeController->runAction($action);
+  $currController = new PostController();
+  $currController->runAction($action);
+} else if ($section == 'api') {
+  include ROOT_PATH . 'controller/ApiController.php';
+
+  $currController = new ApiController();
+  $currController->runAction($action);
 } else {
 
   include ROOT_PATH . 'controller/HomeController.php';
 
-  $homeController = new HomeController();
-  $homeController->runAction($action);
+  $currController = new HomeController();
+  $currController->runAction($action);
 }
