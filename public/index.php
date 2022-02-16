@@ -7,6 +7,13 @@ require_once ROOT_PATH . 'src/Controller.php';
 
 require_once ROOT_PATH . 'src/Template.php';
 
+
+# DATABASE CONNECTION
+# Taking db info dbn, host, username, pass
+$dbCredentials = include ROOT_PATH . 'src/dbCredentials.php';
+# Database Connection
+DatabaseConnection::connect($dbCredentials['host'], $dbCredentials['dbn'], $dbCredentials['user'], $dbCredentials['password']);
+
 # Section is the page name, Action is the page controller action which will include suitable view
 # url: https:metak-mvc.test/?section=home&&action=default
 $section = $_GET['section'] ?? $_POST['section'] ?? 'home';
