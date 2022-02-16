@@ -63,4 +63,18 @@ class PostController extends Controller
     $template = new Template('default'); #choosing template
     $template->view('post/create', []);
   }
+
+  public function passAction()
+  {
+    if ($_POST['password'] == '123456') {
+      $template = new Template('default'); #choosing template
+      $template->view('post/create', []);
+    } else {
+      $message = $_POST['password'] ? "incorrect password" : '';
+      $template = new Template('default'); #choosing template
+      $template->view('post/pass', [
+        'message' => $message
+      ]);
+    }
+  }
 }

@@ -1,0 +1,13 @@
+<div class="form">
+  <h1 class="text-center">Enter Password</h1>
+  <form enctype="multipart/form-data" method="post" action="/index.php/?section=post&action=pass">
+    <div class="form-group">
+      <label>Password (123456)</label>
+      <p>
+        <?= @$message ?>
+      </p>
+      <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+    </div>
+    <button name="submit" type="submit" class="mt-4 btn btn-primary">Submit</button>
+  </form>
+</div>
