@@ -4,6 +4,8 @@ class HomeController extends Controller
 {
   public function defaultAction()
   {
-    include ROOT_PATH . 'view/home/index.php';
+
+    $template = new Template('default'); #choosing template
+    $template->view('home/index', []);
   }
 }
