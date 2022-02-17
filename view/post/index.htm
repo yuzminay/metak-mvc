@@ -1,5 +1,5 @@
 <h1 class="text-center bold">Posts</h1>
-<a href="/index.php/?section=post&action=pass" type="button" class="btn btn-warning">Create Post</a>
+<a href="/index.php?section=post&action=pass" type="button" class="btn btn-warning">Create Post</a>
 <?php if (@$posts): ?>
 <div class="row justify-content-center pt-4">
   <?php foreach($posts as $post):?>
@@ -36,7 +36,7 @@
         </a>
       </li> -->
       <?php for($i=1;$i<=$total_pages;$i++): ?>
-      <li class="page-item"><a class="page-link" href="/index.php/?section=post&page=<?=$i?>">
+      <li class="page-item"><a class="page-link" href="/index.php?section=post&page=<?=$i?>">
           <?= $i ?>
         </a>
       </li>

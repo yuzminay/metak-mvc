@@ -73,13 +73,13 @@ $action = $_GET['action'] ?? $_POST['action'] ?? 'default';
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item <?= 'home' == $section ? 'active' : '' ?>">
-          <a class="nav-link" href="/index.php/?section=home">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/index.php?section=home">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item <?= 'post' == $section ? 'active' : '' ?>">
-          <a class="nav-link" href="/index.php/?section=post">Post</a>
+          <a class="nav-link" href="/index.php?section=post">Post</a>
         </li>
         <li class="nav-item <?= 'api' == $section ? 'active' : '' ?>">
-          <a class="nav-link" href="/index.php/?section=api">API Documentation</a>
+          <a class="nav-link" href="/index.php?section=api">API Documentation</a>
         </li>
       </ul>
     </div>
